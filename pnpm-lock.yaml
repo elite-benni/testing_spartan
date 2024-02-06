@@ -38,9 +38,30 @@ dependencies:
   '@angular/ssr':
     specifier: ^17.0.5
     version: 17.1.2(@angular/common@17.1.2)(@angular/core@17.1.2)
+  '@ng-icons/core':
+    specifier: ^25.1.0
+    version: 25.6.1
+  '@ng-icons/radix-icons':
+    specifier: ^25.1.0
+    version: 25.6.1
   '@spartan-ng/ui-core':
     specifier: 0.0.1-alpha.335
-    version: 0.0.1-alpha.335(@angular/core@17.1.2)(clsx@1.2.1)(rxjs@7.8.1)(tailwind-merge@1.14.0)(tailwindcss-animate@1.0.7)(tailwindcss@3.4.1)
+    version: 0.0.1-alpha.335(@angular/core@17.1.2)(clsx@1.2.1)(rxjs@7.8.1)(tailwind-merge@2.2.1)(tailwindcss-animate@1.0.7)(tailwindcss@3.4.1)
+  '@spartan-ng/ui-dialog-brain':
+    specifier: 0.0.1-alpha.335
+    version: 0.0.1-alpha.335(@angular/cdk@17.1.2)(@angular/core@17.1.2)(@spartan-ng/ui-core@0.0.1-alpha.335)
+  '@spartan-ng/ui-label-brain':
+    specifier: 0.0.1-alpha.335
+    version: 0.0.1-alpha.335(@angular/common@17.1.2)(@angular/core@17.1.2)
+  '@spartan-ng/ui-sheet-brain':
+    specifier: 0.0.1-alpha.335
+    version: 0.0.1-alpha.335(@angular/core@17.1.2)(@spartan-ng/ui-core@0.0.1-alpha.335)(@spartan-ng/ui-dialog-brain@0.0.1-alpha.335)
+  class-variance-authority:
+    specifier: ^0.6.0
+    version: 0.6.1
+  clsx:
+    specifier: ^1.2.1
+    version: 1.2.1
   express:
     specifier: ^4.18.2
     version: 4.18.2
@@ -100,9 +121,15 @@ devDependencies:
   postcss:
     specifier: ^8.4.34
     version: 8.4.34
+  tailwind-merge:
+    specifier: ^2.2.0
+    version: 2.2.1
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
+  tailwindcss-animate:
+    specifier: ^1.0.6
+    version: 1.0.7(tailwindcss@3.4.1)
   typescript:
     specifier: ~5.2.2
     version: 5.2.2
@@ -2781,7 +2808,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
-    dev: true
 
   /@babel/template@7.23.9:
     resolution: {integrity: sha512-+xrD2BWLpvHKNmX2QbpdpsBaWnRxahMwJjO+KZk2JOElj5nSmKezyS1B4u+QbHMTX69t4ukm6hh9lsYQ7GHCKA==}
@@ -3356,6 +3382,18 @@ packages:
     dependencies:
       call-bind: 1.0.6
     dev: true
+
+  /@ng-icons/core@25.6.1:
+    resolution: {integrity: sha512-o6vCttlzXvDZRYiOKOULr7fsX8gY/DwwxzBSrBQzwa/at+pC0xRoe6uczJ9Ato+y1EDWP/PlrEMAQfvokBA6tQ==}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
+
+  /@ng-icons/radix-icons@25.6.1:
+    resolution: {integrity: sha512-B7ZZpDF+h2SBI+9XZOWRthUvMRAPHTUR5/yCVYe56LYPLBTrVmK+Sjz8WsjECzNDEhaObRVtZXegmJ5g3cOQCQ==}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
 
   /@ngtools/webpack@17.1.2(@angular/compiler-cli@17.1.2)(typescript@5.2.2)(webpack@5.89.0):
     resolution: {integrity: sha512-MdNVSIp0x8AK26L+CxMTXH4weq2sNIp4C09RSdk7y6UkfBxMA3O0jTto9tW3ehkBaaGZ4dSiWkXA8L/ydMiQmA==}
@@ -4526,7 +4564,7 @@ packages:
       - webpack-cli
     dev: true
 
-  /@spartan-ng/ui-core@0.0.1-alpha.335(@angular/core@17.1.2)(clsx@1.2.1)(rxjs@7.8.1)(tailwind-merge@1.14.0)(tailwindcss-animate@1.0.7)(tailwindcss@3.4.1):
+  /@spartan-ng/ui-core@0.0.1-alpha.335(@angular/core@17.1.2)(clsx@1.2.1)(rxjs@7.8.1)(tailwind-merge@2.2.1)(tailwindcss-animate@1.0.7)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-/iNdzxvfDp5ZWoNbr41+XExmDBmPTJQjaSWqjf3Rk82nvxPYo3U0OIHYJSV89/dSjuISbIQReI5goJg/isCeag==}
     peerDependencies:
       '@angular/core': ^17.0.0
@@ -4539,9 +4577,46 @@ packages:
       '@angular/core': 17.1.2(rxjs@7.8.1)(zone.js@0.14.3)
       clsx: 1.2.1
       rxjs: 7.8.1
-      tailwind-merge: 1.14.0
+      tailwind-merge: 2.2.1
       tailwindcss: 3.4.1
       tailwindcss-animate: 1.0.7(tailwindcss@3.4.1)
+      tslib: 2.6.2
+    dev: false
+
+  /@spartan-ng/ui-dialog-brain@0.0.1-alpha.335(@angular/cdk@17.1.2)(@angular/core@17.1.2)(@spartan-ng/ui-core@0.0.1-alpha.335):
+    resolution: {integrity: sha512-gOtomcHgcY3ZwyhurizKu9PXNf4Qjpe2LPAEJesd4JcCRTLer2ZkvJ4UZ5dFnLXUT6EysugJfY51Nn6Blts5IQ==}
+    peerDependencies:
+      '@angular/cdk': ^17.0.0
+      '@angular/core': ^17.0.0
+      '@spartan-ng/ui-core': 0.0.1-alpha.335
+    dependencies:
+      '@angular/cdk': 17.1.2(@angular/common@17.1.2)(@angular/core@17.1.2)(rxjs@7.8.1)
+      '@angular/core': 17.1.2(rxjs@7.8.1)(zone.js@0.14.3)
+      '@spartan-ng/ui-core': 0.0.1-alpha.335(@angular/core@17.1.2)(clsx@1.2.1)(rxjs@7.8.1)(tailwind-merge@2.2.1)(tailwindcss-animate@1.0.7)(tailwindcss@3.4.1)
+      tslib: 2.6.2
+    dev: false
+
+  /@spartan-ng/ui-label-brain@0.0.1-alpha.335(@angular/common@17.1.2)(@angular/core@17.1.2):
+    resolution: {integrity: sha512-pyqTq/B7bFnEyeoikyRwaTfBxrePAS9W20CZixi9xhqX+Ih0M+Z62mEbPuqD6844/omoo7aicHAUGsmqmtFd1w==}
+    peerDependencies:
+      '@angular/common': ^17.0.0
+      '@angular/core': ^17.0.0
+    dependencies:
+      '@angular/common': 17.1.2(@angular/core@17.1.2)(rxjs@7.8.1)
+      '@angular/core': 17.1.2(rxjs@7.8.1)(zone.js@0.14.3)
+      tslib: 2.6.2
+    dev: false
+
+  /@spartan-ng/ui-sheet-brain@0.0.1-alpha.335(@angular/core@17.1.2)(@spartan-ng/ui-core@0.0.1-alpha.335)(@spartan-ng/ui-dialog-brain@0.0.1-alpha.335):
+    resolution: {integrity: sha512-xpPPTfTKxX3Mvht4WY4c2ufvNJ3vtU441kfZl+wbcB67Teb/zrXNXv3V7FLon8AP2yEfXR8p7SEehlczPMlVBQ==}
+    peerDependencies:
+      '@angular/core': ^17.0.0
+      '@spartan-ng/ui-core': 0.0.1-alpha.335
+      '@spartan-ng/ui-dialog-brain': 0.0.1-alpha.335
+    dependencies:
+      '@angular/core': 17.1.2(rxjs@7.8.1)(zone.js@0.14.3)
+      '@spartan-ng/ui-core': 0.0.1-alpha.335(@angular/core@17.1.2)(clsx@1.2.1)(rxjs@7.8.1)(tailwind-merge@2.2.1)(tailwindcss-animate@1.0.7)(tailwindcss@3.4.1)
+      '@spartan-ng/ui-dialog-brain': 0.0.1-alpha.335(@angular/cdk@17.1.2)(@angular/core@17.1.2)(@spartan-ng/ui-core@0.0.1-alpha.335)
       tslib: 2.6.2
     dev: false
 
@@ -5773,6 +5848,12 @@ packages:
   /cjs-module-lexer@1.2.3:
     resolution: {integrity: sha512-0TNiGstbQmCFwt4akjjBg5pLRTSyj/PkWQ1ZoO2zntmg9yLqSRxwEa4iCfQLGjqhiqBfOJa7W/E8wfGrTDmlZQ==}
     dev: true
+
+  /class-variance-authority@0.6.1:
+    resolution: {integrity: sha512-eurOEGc7YVx3majOrOb099PNKgO3KnKSApOprXI4BTq6bcfbqbQXPN2u+rPPmIJ2di23bMwhk0SxCCthBmszEQ==}
+    dependencies:
+      clsx: 1.2.1
+    dev: false
 
   /clean-stack@2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
@@ -10165,7 +10246,6 @@ packages:
 
   /regenerator-runtime@0.14.1:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
-    dev: true
 
   /regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}
@@ -10986,9 +11066,10 @@ packages:
     engines: {node: '>=0.10'}
     dev: true
 
-  /tailwind-merge@1.14.0:
-    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
-    dev: false
+  /tailwind-merge@2.2.1:
+    resolution: {integrity: sha512-o+2GTLkthfa5YUt4JxPfzMIpQzZ3adD1vLVkvKE1Twl9UAhGsEbIZhHHZVRttyW177S8PDJI3bTQNaebyofK3Q==}
+    dependencies:
+      '@babel/runtime': 7.23.7
 
   /tailwindcss-animate@1.0.7(tailwindcss@3.4.1):
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
@@ -10996,7 +11077,6 @@ packages:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
       tailwindcss: 3.4.1
-    dev: false
 
   /tailwindcss@3.4.1:
     resolution: {integrity: sha512-qAYmXRfk3ENzuPBakNK0SRrUDipP8NQnEY6772uDhflcQz5EhRdD7JNZxyrFHVQNCwULPBn6FNPp9brpO7ctcA==}
