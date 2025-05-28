@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       <div class="w-full text-center text-xl ">Hello Spartans!</div>
     </div>
     <div class="p-4">
-      <button hlmBtn variant="outline">Hello</button>
+      <button hlmBtn variant="outline">Hello Helm Button</button>
     </div>`,
 })
 export class AppComponent {}
