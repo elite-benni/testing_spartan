@@ -9,8 +9,8 @@ import {
   HlmTableHeadDirective,
   HlmTableHeaderDirective,
   HlmTableRowDirective,
-} from './components/table.directive';
-import { TableDemoComponent } from './components/table-demo.component';
+} from './components/table.directives';
+import { TableDemoComponentDirect } from './components/table-demo-direct.component';
 
 interface Product {
   id: string;
@@ -19,7 +19,7 @@ interface Product {
 }
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, HlmButtonDirective, TableDemoComponent],
+  imports: [CommonModule, HlmButtonDirective, TableDemoComponentDirect],
   template: `
     <div class="flex align-middle  items-center bg-primary w-full h-20">
       <div class="w-full text-center text-xl ">Hello Spartans!</div>
@@ -29,7 +29,7 @@ interface Product {
     </div>
     <div class="p-4 flex justify-center">
       <div class="relative w-full max-w-3xl overflow-x-auto">
-        <app-table-demo />
+        <app-table-demo-direct />
       </div>
     </div>
   `,

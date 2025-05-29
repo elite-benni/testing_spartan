@@ -5,14 +5,14 @@ import {
   HlmTableBodyDirective,
   HlmTableCaptionDirective,
   HlmTableCellDirective,
-  HlmTableDirective,
   HlmTableFooterDirective,
   HlmTableHeadDirective,
   HlmTableHeaderDirective,
   HlmTableRowDirective,
-} from './table.directives';
+  HlmTableDirective,
+} from './table.directives-direct';
 
-// Import all the HLM table directives with their updated selectors
+// Import all the  table directives with their updated selectors
 
 // Define the interface for the invoice data
 interface Invoice {
@@ -23,11 +23,11 @@ interface Invoice {
 }
 
 @Component({
-  selector: 'app-table-demo',
+  selector: 'app-table-demo-direct',
   standalone: true,
   imports: [
     CommonModule,
-    // List all HLM table directives used in the template
+    // List all  table directives used in the template
     HlmTableDirective,
     HlmTableHeaderDirective,
     HlmTableBodyDirective,
@@ -40,32 +40,32 @@ interface Invoice {
   template: `
     <div class="p-4">
       <div class="relative w-full overflow-x-auto">
-        <table hlm>
-          <caption hlm>
+        <table>
+          <caption>
             A list of your recent invoices.
           </caption>
-          <thead hlm>
-            <tr hlm>
-              <th hlm class="w-[100px]">Invoice</th>
-              <th hlm>Status</th>
-              <th hlm>Method</th>
-              <th hlm class="text-right">Amount</th>
+          <thead>
+            <tr>
+              <th class="w-[100px]">Invoice</th>
+              <th>Status</th>
+              <th>Method</th>
+              <th class="text-right">Amount</th>
             </tr>
           </thead>
-          <tbody hlm>
+          <tbody>
             @for (invoice of invoices; track invoice.invoice) {
-              <tr hlm>
-                <td hlm class="font-medium">{{ invoice.invoice }}</td>
-                <td hlm>{{ invoice.paymentStatus }}</td>
-                <td hlm>{{ invoice.paymentMethod }}</td>
-                <td hlm class="text-right">{{ invoice.totalAmount }}</td>
+              <tr>
+                <td class="font-medium">{{ invoice.invoice }}</td>
+                <td>{{ invoice.paymentStatus }}</td>
+                <td>{{ invoice.paymentMethod }}</td>
+                <td class="text-right">{{ invoice.totalAmount }}</td>
               </tr>
             }
           </tbody>
-          <tfoot hlm>
-            <tr hlm>
-              <td hlm [attr.colSpan]="3">Total</td>
-              <td hlm class="text-right">$2,500.00</td>
+          <tfoot>
+            <tr>
+              <td [attr.colSpan]="3">Total</td>
+              <td class="text-right">$2,500.00</td>
             </tr>
           </tfoot>
         </table>
@@ -75,7 +75,7 @@ interface Invoice {
   // No styles array here, as requested.
   styles: [],
 })
-export class TableDemoComponent {
+export class TableDemoComponentDirect {
   invoices: Invoice[] = [
     {
       invoice: 'INV001',
