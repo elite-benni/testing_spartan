@@ -1,15 +1,16 @@
 // src/app/components/table-demo/table-demo.component.ts
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   HlmTableBodyDirective,
   HlmTableCaptionDirective,
   HlmTableCellDirective,
   HlmTableFooterDirective,
-  HlmTableHeadDirective,
   HlmTableHeaderDirective,
   HlmTableRowDirective,
   HlmTableDirective,
+  HlmTableHeadDirective,
+  HlmTableVariantDefault,
 } from './table.directives-direct';
 
 // Import all the  table directives with their updated selectors
@@ -40,7 +41,7 @@ interface Invoice {
   template: `
     <div class="p-4">
       <div class="relative w-full overflow-x-auto">
-        <table>
+        <table [hlm]="tableVariant()">
           <caption>
             A list of your recent invoices.
           </caption>
@@ -76,6 +77,7 @@ interface Invoice {
   styles: [],
 })
 export class TableDemoComponentDirect {
+  tableVariant = input(HlmTableVariantDefault);
   invoices: Invoice[] = [
     {
       invoice: 'INV001',
