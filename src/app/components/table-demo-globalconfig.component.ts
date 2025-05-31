@@ -13,8 +13,6 @@ import {
   HlmTableVariantDefault,
 } from './table.directives-direct';
 
-// Import all the  table directives with their updated selectors
-
 // Define the interface for the invoice data
 interface Invoice {
   invoice: string;
@@ -24,7 +22,7 @@ interface Invoice {
 }
 
 @Component({
-  selector: 'app-table-demo-direct',
+  selector: 'app-table-demo-direct-globalconfig',
   standalone: true,
   imports: [
     CommonModule,
@@ -40,22 +38,24 @@ interface Invoice {
   ],
   template: `
     <div class="p-4">
-      <h2 class="text-xl font-semibold mb-4">Table with Local Input Variant</h2>
-      <div class="relative w-full overflow-x-auto mb-8">
-        <table [hlm]="tableVariant()">
+      <h2 class="text-xl font-semibold mb-4">
+        Table with Global/Default Variant
+      </h2>
+      <div class="relative w-full overflow-x-auto">
+        <table hlm>
           <caption>
-            A list of your recent invoices (local variant).
+            Another list of your recent invoices (global/default variant).
           </caption>
           <thead>
             <tr>
-              <th class="w-[100px]">Invoice</th>
+              <th class="w-[100px]">Invoice ID</th>
               <th>Status</th>
-              <th>Method</th>
+              <th>Payment Method</th>
               <th class="text-right">Amount</th>
             </tr>
           </thead>
           <tbody>
-            @for (invoice of invoices; track invoice.invoice) {
+            @for (invoice of invoices; track invoice.invoice + '-global') {
               <tr>
                 <td class="font-medium">{{ invoice.invoice }}</td>
                 <td>{{ invoice.paymentStatus }}</td>
@@ -66,7 +66,7 @@ interface Invoice {
           </tbody>
           <tfoot>
             <tr>
-              <td [attr.colSpan]="3">Total</td>
+              <td [attr.colSpan]="3">Total Sum</td>
               <td class="text-right">$2,500.00</td>
             </tr>
           </tfoot>
@@ -74,11 +74,8 @@ interface Invoice {
       </div>
     </div>
   `,
-  // No styles array here, as requested.
-  styles: [],
 })
-export class TableDemoComponentDirect {
-  tableVariant = input(HlmTableVariantDefault); // uses HlmTleVariantDefault do demonstrate that input has higher priority than global config
+export class TableDemoComponentDirectGlobalconfig {
   invoices: Invoice[] = [
     {
       invoice: 'INV001',
