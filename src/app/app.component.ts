@@ -11,7 +11,19 @@ import {
   HlmTableRowDirective,
 } from './components/table.directives';
 import { TableDemoComponentDirect } from './components/table-demo-direct.component';
-import { HlmTableVariant } from './components/table.directives-direct';
+import {
+  HlmTableVariant,
+  provideHlmTableConfig,
+} from './components/table.directives-direct';
+import { TableDemoComponentDirectGlobalconfig } from './components/table-demo-globalconfig.component';
+
+const myLargeTable: Partial<HlmTableVariant> = {
+  table: 'w-full caption-bottom text-lg',
+  thead: '[&_tr]:border-b bg-primary',
+  tbody: '[&_tr:last-child]:border-2',
+  th: 'h-18 px-8 text-left align-middle font-medium text-white [&:has([role=checkbox])]:pr-0',
+  td: 'p-8 align-middle [&:has([role=checkbox])]:pr-0',
+};
 
 interface Product {
   id: string;
@@ -20,9 +32,15 @@ interface Product {
 }
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, HlmButtonDirective, TableDemoComponentDirect],
+  imports: [
+    CommonModule,
+    HlmButtonDirective,
+    TableDemoComponentDirect,
+    TableDemoComponentDirectGlobalconfig,
+  ],
+  providers: [provideHlmTableConfig(myLargeTable)],
   template: `
-    <div class="flex align-middle  items-center bg-primary w-full h-20">
+    <div class="flex align-middle items-center bg-primary w-full h-20">
       <div class="w-full text-center text-xl ">Hello Spartans!</div>
     </div>
     <div class="p-4">
@@ -38,6 +56,12 @@ interface Product {
     <div class="p-4 flex justify-center">
       <div class="relative w-full max-w-3xl overflow-x-auto">
         <app-table-demo-direct [tableVariant]="newYork" />
+      </div>
+    </div>
+
+    <div class="p-4 flex justify-center">
+      <div class="relative w-full max-w-3xl overflow-x-auto">
+        <app-table-demo-direct-globalconfig />
       </div>
     </div>
   `,

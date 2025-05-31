@@ -5,11 +5,16 @@ import {
   Directive,
   inject,
   input,
+  InjectionToken,
+  ValueProvider,
   // Input, // No longer needed here as child directives won't have individual class inputs
 } from '@angular/core';
 import { alertVariants } from '@spartan-ng/ui-alert-helm'; // Unused, but kept from original
 
 // Configuration Interface and InjectionToken
+export const HlmTableConfigToken = new InjectionToken<HlmTableVariant>(
+  'HlmTableConfig',
+);
 export interface HlmTableVariant {
   table: string;
   thead: string;
@@ -33,6 +38,21 @@ export const HlmTableVariantDefault: HlmTableVariant = {
   caption: 'mt-4 text-sm text-muted-foreground',
 };
 
+export function provideHlmTableConfig(
+  config: Partial<HlmTableVariant>,
+): ValueProvider {
+  return {
+    provide: HlmTableConfigToken,
+    useValue: { ...HlmTableVariantDefault, ...config },
+  };
+}
+
+export function injectHlmTableConfig(): HlmTableVariant {
+  return (
+    inject(HlmTableConfigToken, { optional: true }) ?? HlmTableVariantDefault
+  );
+}
+
 /**
  * Directive to apply Shadcn-like styling to a <table> element.
  * It resolves and provides base classes for its child table elements.
@@ -50,17 +70,26 @@ export class HlmTableDirective {
     {},
     { alias: 'hlm' },
   );
+  private readonly _globalOrDefaultConfig = injectHlmTableConfig();
 
   // Protected variant that resolves user input to a full HlmTableVariant
   protected readonly _variant = computed<HlmTableVariant>(() => {
-    const userVariant = this.userVariant();
-    if (typeof userVariant === 'object') {
-      return { ...HlmTableVariantDefault, ...userVariant };
+    const globalOrDefaultConfig = this._globalOrDefaultConfig; // Use the stored value
+    const localInputConfig = this.userVariant(); // This is Partial<HlmTableVariant> | string
+
+    // Priority 1: Local input object
+    if (
+      typeof localInputConfig === 'object' &&
+      localInputConfig !== null &&
+      Object.keys(localInputConfig).length > 0
+    ) {
+      // Merge local input with the baseline provided by injectHlmTableConfig()
+      // This ensures that properties not in localInputConfig still fall back to global/default values.
+      return { ...globalOrDefaultConfig, ...localInputConfig };
     }
-    // If userVariant is a string, it implies a named variant.
-    // For this example, we'll assume HlmTableVariantDefault if it's not an object.
-    // A more robust solution would look up named variants from a predefined map or service.
-    return HlmTableVariantDefault;
+    // If localInputConfig is not a non-empty object (e.g., it's undefined, an empty object, or a string),
+    // then the globalOrDefaultConfig (which is already the result of injected OR default) is used.
+    return globalOrDefaultConfig;
   });
 
   // Computed class for the host <table> element
