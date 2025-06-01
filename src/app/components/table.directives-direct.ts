@@ -1,5 +1,4 @@
 // src/app/directives/hlm-table-directives.ts
-import { SelectorContext } from '@angular/compiler'; // Unused, but kept from original
 import {
   computed,
   Directive,
@@ -9,7 +8,8 @@ import {
   ValueProvider,
   // Input, // No longer needed here as child directives won't have individual class inputs
 } from '@angular/core';
-import { alertVariants } from '@spartan-ng/ui-alert-helm'; // Unused, but kept from original
+import { hlm } from '@spartan-ng/brain/core';
+import type { ClassValue } from 'clsx';
 
 // Configuration Interface and InjectionToken
 export const HlmTableConfigToken = new InjectionToken<HlmTableVariant>(
@@ -58,7 +58,7 @@ export function injectHlmTableConfig(): HlmTableVariant {
  * It resolves and provides base classes for its child table elements.
  */
 @Directive({
-  selector: 'table[hlm]', // Applies to <table> elements with the 'hlm' attribute
+  selector: 'table[hlm]',
   standalone: true,
   host: {
     '[class]': '_computedClass()',
@@ -70,12 +70,13 @@ export class HlmTableDirective {
     {},
     { alias: 'hlm' },
   );
+  public readonly userClass = input<ClassValue>('', { alias: 'class' });
   private readonly _globalOrDefaultConfig = injectHlmTableConfig();
 
   // Protected variant that resolves user input to a full HlmTableVariant
   protected readonly _variant = computed<HlmTableVariant>(() => {
-    const globalOrDefaultConfig = this._globalOrDefaultConfig; // Use the stored value
-    const localInputConfig = this.userVariant(); // This is Partial<HlmTableVariant> | string
+    const globalOrDefaultConfig = this._globalOrDefaultConfig;
+    const localInputConfig = this.userVariant();
 
     // Priority 1: Local input object
     if (
@@ -93,7 +94,9 @@ export class HlmTableDirective {
   });
 
   // Computed class for the host <table> element
-  protected readonly _computedClass = computed(() => this._variant().table);
+  protected readonly _computedClass = computed(() =>
+    hlm(this._variant().table, this.userClass()),
+  );
 
   // Expose resolved base classes for child directives as signals
   public readonly hlmTableHead = computed(() => this._variant().thead);
@@ -110,17 +113,21 @@ export class HlmTableDirective {
  * within an HlmTableDirective context.
  */
 @Directive({
-  selector: 'thead', // Simplified selector
+  selector: 'thead',
   standalone: true,
   host: {
     '[class]': '_computedClass()',
   },
 })
 export class HlmTableHeaderDirective {
-  private readonly _hlmTable = inject(HlmTableDirective, { optional: true }); // Updated injection
+  private readonly _hlmTable = inject(HlmTableDirective, { optional: true });
+  public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-  protected readonly _computedClass = computed(
-    () => (this._hlmTable ? this._hlmTable.hlmTableHead().trim() : ''), // Simplified computed class
+  protected readonly _computedClass = computed(() =>
+    hlm(
+      this._hlmTable ? this._hlmTable.hlmTableHead().trim() : '',
+      this.userClass(),
+    ),
   );
 }
 
@@ -129,17 +136,21 @@ export class HlmTableHeaderDirective {
  * within an HlmTableDirective context.
  */
 @Directive({
-  selector: 'tbody', // Simplified selector
+  selector: 'tbody',
   standalone: true,
   host: {
     '[class]': '_computedClass()',
   },
 })
 export class HlmTableBodyDirective {
-  private readonly _hlmTable = inject(HlmTableDirective, { optional: true }); // Updated injection
+  private readonly _hlmTable = inject(HlmTableDirective, { optional: true });
+  public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-  protected readonly _computedClass = computed(
-    () => (this._hlmTable ? this._hlmTable.hlmTableBody().trim() : ''), // Simplified computed class
+  protected readonly _computedClass = computed(() =>
+    hlm(
+      this._hlmTable ? this._hlmTable.hlmTableBody().trim() : '',
+      this.userClass(),
+    ),
   );
 }
 
@@ -148,17 +159,21 @@ export class HlmTableBodyDirective {
  * within an HlmTableDirective context.
  */
 @Directive({
-  selector: 'tfoot', // Simplified selector
+  selector: 'tfoot',
   standalone: true,
   host: {
     '[class]': '_computedClass()',
   },
 })
 export class HlmTableFooterDirective {
-  private readonly _hlmTable = inject(HlmTableDirective, { optional: true }); // Updated injection
+  private readonly _hlmTable = inject(HlmTableDirective, { optional: true });
+  public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-  protected readonly _computedClass = computed(
-    () => (this._hlmTable ? this._hlmTable.hlmTableFoot().trim() : ''), // Simplified computed class
+  protected readonly _computedClass = computed(() =>
+    hlm(
+      this._hlmTable ? this._hlmTable.hlmTableFoot().trim() : '',
+      this.userClass(),
+    ),
   );
 }
 
@@ -167,17 +182,21 @@ export class HlmTableFooterDirective {
  * within an HlmTableDirective context.
  */
 @Directive({
-  selector: 'tr', // Simplified selector
+  selector: 'tr',
   standalone: true,
   host: {
     '[class]': '_computedClass()',
   },
 })
 export class HlmTableRowDirective {
-  private readonly _hlmTable = inject(HlmTableDirective, { optional: true }); // Updated injection
+  private readonly _hlmTable = inject(HlmTableDirective, { optional: true });
+  public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-  protected readonly _computedClass = computed(
-    () => (this._hlmTable ? this._hlmTable.hlmTableTr().trim() : ''), // Simplified computed class
+  protected readonly _computedClass = computed(() =>
+    hlm(
+      this._hlmTable ? this._hlmTable.hlmTableTr().trim() : '',
+      this.userClass(),
+    ),
   );
 }
 
@@ -186,17 +205,21 @@ export class HlmTableRowDirective {
  * within an HlmTableDirective context.
  */
 @Directive({
-  selector: 'th', // Simplified selector
+  selector: 'th',
   standalone: true,
   host: {
     '[class]': '_computedClass()',
   },
 })
 export class HlmTableHeadDirective {
-  private readonly _hlmTable = inject(HlmTableDirective, { optional: true }); // Updated injection
+  private readonly _hlmTable = inject(HlmTableDirective, { optional: true });
+  public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-  protected readonly _computedClass = computed(
-    () => (this._hlmTable ? this._hlmTable.hlmTableTh().trim() : ''), // Simplified computed class
+  protected readonly _computedClass = computed(() =>
+    hlm(
+      this._hlmTable ? this._hlmTable.hlmTableTh().trim() : '',
+      this.userClass(),
+    ),
   );
 }
 
@@ -205,17 +228,21 @@ export class HlmTableHeadDirective {
  * within an HlmTableDirective context.
  */
 @Directive({
-  selector: 'td', // Simplified selector
+  selector: 'td',
   standalone: true,
   host: {
     '[class]': '_computedClass()',
   },
 })
 export class HlmTableCellDirective {
-  private readonly _hlmTable = inject(HlmTableDirective, { optional: true }); // Updated injection
+  private readonly _hlmTable = inject(HlmTableDirective, { optional: true });
+  public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-  protected readonly _computedClass = computed(
-    () => (this._hlmTable ? this._hlmTable.hlmTableTd().trim() : ''), // Simplified computed class
+  protected readonly _computedClass = computed(() =>
+    hlm(
+      this._hlmTable ? this._hlmTable.hlmTableTd().trim() : '',
+      this.userClass(),
+    ),
   );
 }
 
@@ -224,17 +251,21 @@ export class HlmTableCellDirective {
  * within an HlmTableDirective context.
  */
 @Directive({
-  selector: 'caption', // Simplified selector
+  selector: 'caption',
   standalone: true,
   host: {
     '[class]': '_computedClass()',
   },
 })
 export class HlmTableCaptionDirective {
-  private readonly _hlmTable = inject(HlmTableDirective, { optional: true }); // Updated injection
+  private readonly _hlmTable = inject(HlmTableDirective, { optional: true });
+  public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-  protected readonly _computedClass = computed(
-    () => (this._hlmTable ? this._hlmTable.hlmTableCaption().trim() : ''), // Simplified computed class
+  protected readonly _computedClass = computed(() =>
+    hlm(
+      this._hlmTable ? this._hlmTable.hlmTableCaption().trim() : '',
+      this.userClass(),
+    ),
   );
 }
 
