@@ -6,7 +6,7 @@ import {
   provideHlmTableConfig, // Use the new provider function
   HlmTableVariant,
   // HLM_TABLE_CONFIG is no longer needed directly, nor is HlmTableConfigToken for these tests
-} from './table.directives-direct';
+} from './table.directives';
 
 // Helper component to test the directive
 @Component({
@@ -30,12 +30,18 @@ describe('HlmTableDirective Configuration Priority', () => {
   let component: TestHostComponent;
 
   const defaultConf: HlmTableVariant = HlmTableVariantDefault;
-  const globalConfPartial: Partial<HlmTableVariant> = { table: 'global-table-class', th: 'global-th-class' };
-  const inputConfPartial: Partial<HlmTableVariant> = { table: 'input-table-class', td: 'input-td-class' };
+  const globalConfPartial: Partial<HlmTableVariant> = {
+    table: 'global-table-class',
+    th: 'global-th-class',
+  };
+  const inputConfPartial: Partial<HlmTableVariant> = {
+    table: 'input-table-class',
+    td: 'input-td-class',
+  };
 
   function setupTestBedAndDetectChanges(
     providers: any[] = [],
-    variantInput?: Partial<HlmTableVariant> | string
+    variantInput?: Partial<HlmTableVariant> | string,
   ) {
     TestBed.configureTestingModule({
       imports: [TestHostComponent],
@@ -52,7 +58,7 @@ describe('HlmTableDirective Configuration Priority', () => {
   it('should use userVariant input (object) when provided; this merges with defaults and overrides global config', () => {
     setupTestBedAndDetectChanges(
       [provideHlmTableConfig(globalConfPartial)], // Updated provider
-      inputConfPartial
+      inputConfPartial,
     );
     const appliedVariant = component.getAppliedVariant();
 
@@ -84,7 +90,7 @@ describe('HlmTableDirective Configuration Priority', () => {
   it('should use global HLM_TABLE_CONFIG when userVariant is an empty object (treated as no specific input override)', () => {
     setupTestBedAndDetectChanges(
       [provideHlmTableConfig(globalConfPartial)], // Updated provider
-      {}
+      {},
     );
     const appliedVariant = component.getAppliedVariant();
 
@@ -96,7 +102,7 @@ describe('HlmTableDirective Configuration Priority', () => {
   it('should use global config if userVariant is a string and global config exists', () => {
     setupTestBedAndDetectChanges(
       [provideHlmTableConfig(globalConfPartial)], // Updated provider
-      'some-string-variant'
+      'some-string-variant',
     );
     const appliedVariant = component.getAppliedVariant();
     expect(appliedVariant.table).toBe(globalConfPartial.table!);
@@ -104,10 +110,7 @@ describe('HlmTableDirective Configuration Priority', () => {
   });
 
   it('should use default config if userVariant is a string and no global config exists', () => {
-    setupTestBedAndDetectChanges(
-      [],
-      'some-string-variant'
-    );
+    setupTestBedAndDetectChanges([], 'some-string-variant');
     const appliedVariant = component.getAppliedVariant();
     expect(appliedVariant.table).toBe(defaultConf.table);
     expect(appliedVariant.th).toBe(defaultConf.th);

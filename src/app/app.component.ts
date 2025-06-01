@@ -1,20 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HlmButtonDirective } from '@spartan-ng/helm/button';
-import {
-  HlmTableBodyDirective,
-  HlmTableCaptionDirective,
-  HlmTableCellDirective,
-  HlmTableDirective,
-  HlmTableHeadDirective,
-  HlmTableHeaderDirective,
-  HlmTableRowDirective,
-} from './components/table.directives';
-import { TableDemoComponentDirect } from './components/table-demo-direct.component';
+import { TableDemoComponentDirect } from './components/table-demo.component';
 import {
   HlmTableVariant,
   provideHlmTableConfig,
-} from './components/table.directives-direct';
+} from './components/table.directives';
 import { TableDemoComponentDirectGlobalconfig } from './components/table-demo-globalconfig.component';
 
 const myLargeTable: Partial<HlmTableVariant> = {
@@ -34,7 +24,6 @@ interface Product {
   selector: 'app-root',
   imports: [
     CommonModule,
-    HlmButtonDirective,
     TableDemoComponentDirect,
     TableDemoComponentDirectGlobalconfig,
   ],
@@ -43,9 +32,7 @@ interface Product {
     <div class="flex align-middle items-center bg-primary w-full h-20">
       <div class="w-full text-center text-xl ">Hello Spartans!</div>
     </div>
-    <div class="p-4">
-      <button hlmBtn variant="outline">Hello Helm Button</button>
-    </div>
+    <div class="p-4 w-full text-center">Default styled Table</div>
     <div class="p-4 flex justify-center">
       <div class="relative w-full max-w-3xl overflow-x-auto">
         <app-table-demo-direct />
@@ -59,6 +46,9 @@ interface Product {
       </div>
     </div>
 
+    <div class="p-4 w-full text-center">
+      Global styled Table via provideHlmTableConfig
+    </div>
     <div class="p-4 flex justify-center">
       <div class="relative w-full max-w-3xl overflow-x-auto">
         <app-table-demo-direct-globalconfig />
