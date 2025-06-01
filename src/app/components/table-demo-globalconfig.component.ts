@@ -10,8 +10,7 @@ import {
   HlmTableRowDirective,
   HlmTableDirective,
   HlmTableHeadDirective,
-  HlmTableVariantDefault,
-} from './table.directives-direct';
+} from './table.directives';
 
 // Define the interface for the invoice data
 interface Invoice {
