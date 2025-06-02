@@ -6,6 +6,7 @@ import {
   provideHlmTableConfig,
 } from './components/table.directives';
 import { TableDemoComponentDirectGlobalconfig } from './components/table-demo-globalconfig.component';
+import { DataTablePaymentComponent } from "./data-table/data-table.component";
 
 const myLargeTable: Partial<HlmTableVariant> = {
   table: 'w-full caption-bottom text-lg',
@@ -26,11 +27,18 @@ interface Product {
     CommonModule,
     TableDemoComponentDirect,
     TableDemoComponentDirectGlobalconfig,
-  ],
+    DataTablePaymentComponent
+],
   providers: [provideHlmTableConfig(myLargeTable)],
   template: `
     <div class="flex align-middle items-center bg-primary w-full h-20">
       <div class="w-full text-center text-xl ">Hello Spartans!</div>
+    </div>
+    <div class="p-4 w-full text-center">Payment data table</div>
+    <div class="p-4 flex justify-center">
+      <div class="relative w-full max-w-3xl overflow-x-auto">
+        <app-data-table-payment [tableVariant]="newYork" />
+      </div>
     </div>
     <div class="p-4 w-full text-center">Default styled Table</div>
     <div class="p-4 flex justify-center">
