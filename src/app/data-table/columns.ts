@@ -1,4 +1,5 @@
-import { ColumnDef } from '@tanstack/angular-table';
+import { ColumnDef, flexRenderComponent } from '@tanstack/angular-table';
+import { ActionDropdownComponent } from './action-dropdown.component';
 
 export type Payment = {
   id: string;
@@ -28,5 +29,9 @@ export const columns: ColumnDef<Payment>[] = [
 
       return `<div class="text-right">${formatted}</div>`;
     },
+  },
+  {
+    id: 'actions',
+    cell: () => flexRenderComponent(ActionDropdownComponent),
   },
 ];

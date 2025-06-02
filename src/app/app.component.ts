@@ -6,7 +6,7 @@ import {
   provideHlmTableConfig,
 } from './components/table.directives';
 import { TableDemoComponentDirectGlobalconfig } from './components/table-demo-globalconfig.component';
-import { DataTablePaymentComponent } from "./data-table/data-table";
+import { DataTablePaymentComponent } from "./data-table/data-table.component";
 
 const myLargeTable: Partial<HlmTableVariant> = {
   table: 'w-full caption-bottom text-lg',
