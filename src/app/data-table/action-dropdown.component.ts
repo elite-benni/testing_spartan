@@ -3,13 +3,13 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { HlmButtonDirective } from '@spartan-ng/helm/button';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 import {
   HlmMenuComponent,
   HlmMenuItemDirective,
   HlmMenuLabelComponent,
   HlmMenuSeparatorComponent,
-} from '@spartan-ng/ui-menu-helm';
+} from '@spartan-ng/helm/menu';
 import { CellContext, injectFlexRenderContext } from '@tanstack/angular-table';
 import { Payment } from './columns';
 

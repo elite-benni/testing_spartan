@@ -7,6 +7,8 @@ import {
 } from './components/table.directives';
 import { TableDemoComponentDirectGlobalconfig } from './components/table-demo-globalconfig.component';
 import { DataTablePaymentComponent } from "./data-table/data-table.component";
+import { BrnSeparatorComponent } from '@spartan-ng/brain/separator';
+import { HlmSeparatorDirective } from '@spartan-ng/helm/separator';
 
 const myLargeTable: Partial<HlmTableVariant> = {
   table: 'w-full caption-bottom text-lg',
@@ -27,10 +29,13 @@ interface Product {
     CommonModule,
     TableDemoComponentDirect,
     TableDemoComponentDirectGlobalconfig,
-    DataTablePaymentComponent
-],
+    HlmSeparatorDirective,
+    BrnSeparatorComponent,
+    DataTablePaymentComponent,
+  ],
   providers: [provideHlmTableConfig(myLargeTable)],
   template: `
+
     <div class="flex align-middle items-center bg-primary w-full h-20">
       <div class="w-full text-center text-xl ">Hello Spartans!</div>
     </div>
@@ -40,6 +45,8 @@ interface Product {
         <app-data-table-payment [tableVariant]="newYork" />
       </div>
     </div>
+
+      <brn-separator hlmSeparator class="my-4" />
     <div class="p-4 w-full text-center">Default styled Table</div>
     <div class="p-4 flex justify-center">
       <div class="relative w-full max-w-3xl overflow-x-auto">
@@ -47,6 +54,7 @@ interface Product {
       </div>
     </div>
 
+      <brn-separator hlmSeparator class="my-4" />
     <div class="p-4 w-full text-center">New York styled Table</div>
     <div class="p-4 flex justify-center">
       <div class="relative w-full max-w-3xl overflow-x-auto">
@@ -54,6 +62,7 @@ interface Product {
       </div>
     </div>
 
+      <brn-separator hlmSeparator class="my-4" />
     <div class="p-4 w-full text-center">
       Global styled Table via provideHlmTableConfig
     </div>
