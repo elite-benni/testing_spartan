@@ -18,6 +18,15 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: 'amount',
-    header: 'Amount',
+    header: () => '<div class="text-right">Amount</div>',
+    cell: (info) => {
+      const amount = parseFloat(info.getValue<string>());
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(amount);
+
+      return `<div class="text-right">${formatted}</div>`;
+    },
   },
 ];
