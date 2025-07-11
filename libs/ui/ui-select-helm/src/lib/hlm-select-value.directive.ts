@@ -4,7 +4,6 @@ import type { ClassValue } from 'clsx';
 
 @Directive({
 	selector: 'hlm-select-value,[hlmSelectValue], brn-select-value[hlm]',
-	standalone: true,
 	host: {
 		'[class]': '_computedClass()',
 	},
@@ -12,9 +11,6 @@ import type { ClassValue } from 'clsx';
 export class HlmSelectValueDirective {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
-		hlm(
-			'!inline-block ltr:text-left rtl:text-right border-border w-[calc(100%)]] min-w-0 pointer-events-none truncate data-[placeholder]:text-muted-foreground',
-			this.userClass(),
-		),
+		hlm('line-clamp-1 flex items-center gap-2 data-[placeholder]:text-muted-foreground', this.userClass()),
 	);
 }

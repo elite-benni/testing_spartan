@@ -14,7 +14,6 @@ export type PaginationLinkVariants = VariantProps<typeof paginationLinkVariants>
 
 @Directive({
 	selector: '[hlmPaginationLink]',
-	standalone: true,
 	hostDirectives: [
 		{
 			directive: RouterLink,
@@ -40,8 +39,11 @@ export type PaginationLinkVariants = VariantProps<typeof paginationLinkVariants>
 })
 export class HlmPaginationLinkDirective {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
+	/** Whether the link is active (i.e., the current page). */
 	public readonly isActive = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
+	/** The size of the button. */
 	public readonly size = input<ButtonVariants['size']>('icon');
+	/** The link to navigate to the page. */
 	public readonly link = input<RouterLink['routerLink']>();
 
 	protected readonly _computedClass = computed(() =>

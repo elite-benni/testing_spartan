@@ -3,7 +3,6 @@ import { BrnCommandListDirective } from '@spartan-ng/brain/command';
 import { hlm } from '@spartan-ng/brain/core';
 
 @Component({
-	standalone: true,
 	selector: 'hlm-command-list',
 	template: '<ng-content />',
 	host: {
@@ -23,6 +22,6 @@ export class HlmCommandListComponent {
 
 	/** The styles to apply  */
 	protected readonly _computedClass = computed(() =>
-		hlm('max-h-[300px] overflow-x-hidden overflow-y-auto', this.userClass()),
+		hlm('flex flex-col max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto', this.userClass()),
 	);
 }

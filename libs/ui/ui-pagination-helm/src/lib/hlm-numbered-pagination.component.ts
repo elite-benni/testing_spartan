@@ -181,7 +181,7 @@ type Page = number | '...';
  *
  * Copied from 'ngx-pagination' package
  */
-function outOfBoundCorrection(totalItems: number, itemsPerPage: number, currentPage: number): number {
+export function outOfBoundCorrection(totalItems: number, itemsPerPage: number, currentPage: number): number {
 	const totalPages = Math.ceil(totalItems / itemsPerPage);
 	if (totalPages < currentPage && 0 < totalPages) {
 		return totalPages;
@@ -199,7 +199,7 @@ function outOfBoundCorrection(totalItems: number, itemsPerPage: number, currentP
  *
  * Copied from 'ngx-pagination' package
  */
-function createPageArray(
+export function createPageArray(
 	currentPage: number,
 	itemsPerPage: number,
 	totalItems: number,

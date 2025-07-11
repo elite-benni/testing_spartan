@@ -17,7 +17,6 @@
 }
 
 @theme {
-  --color-*: initial;
   --color-background: hsl(0 0% 100%);
   --color-foreground: hsl(0 0% 3.9%);
   --color-muted: hsl(0 0% 96.1%);
