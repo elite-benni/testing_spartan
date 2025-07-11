@@ -1,6 +1,6 @@
 // src/app/components/table-demo/table-demo.component.ts
 import { Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {
   HlmTableBodyDirective,
   HlmTableCaptionDirective,
@@ -27,8 +27,6 @@ interface Invoice {
   selector: 'app-table-demo-direct',
   standalone: true,
   imports: [
-    CommonModule,
-    // List all  table directives used in the template
     HlmTableDirective,
     HlmTableHeaderDirective,
     HlmTableBodyDirective,
@@ -36,8 +34,8 @@ interface Invoice {
     HlmTableRowDirective,
     HlmTableHeadDirective,
     HlmTableCellDirective,
-    HlmTableCaptionDirective,
-  ],
+    HlmTableCaptionDirective
+],
   template: `
     <div class="p-4">
       <h2 class="text-xl font-semibold mb-4">Table with Local Input Variant</h2>

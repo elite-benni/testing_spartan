@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TableDemoComponentDirect } from './components/table-demo.component';
 import {
   HlmTableVariant,
   provideHlmTableConfig,
 } from './components/table.directives';
 import { TableDemoComponentDirectGlobalconfig } from './components/table-demo-globalconfig.component';
-import { DataTablePaymentComponent } from "./data-table/data-table.component";
+import { DataTablePaymentComponent } from './data-table/data-table.component';
 import { BrnSeparatorComponent } from '@spartan-ng/brain/separator';
 import { HlmSeparatorDirective } from '@spartan-ng/helm/separator';
+import {
+  HlmAvatarComponent,
+  HlmAvatarFallbackDirective,
+  HlmAvatarImageDirective,
+} from '@spartan-ng/helm/avatar';
 
 const myLargeTable: Partial<HlmTableVariant> = {
   table: 'w-full caption-bottom text-lg',
@@ -26,18 +31,30 @@ interface Product {
 @Component({
   selector: 'app-root',
   imports: [
-    CommonModule,
     TableDemoComponentDirect,
     TableDemoComponentDirectGlobalconfig,
     HlmSeparatorDirective,
     BrnSeparatorComponent,
     DataTablePaymentComponent,
+    HlmAvatarComponent,
+    HlmAvatarImageDirective,
+    HlmAvatarFallbackDirective,
   ],
+  host: { class: 'flex flex-col dark' },
   providers: [provideHlmTableConfig(myLargeTable)],
   template: `
-
-    <div class="flex align-middle items-center bg-primary w-full h-20">
-      <div class="w-full text-center text-xl ">Hello Spartans!</div>
+    <div class="flex  align-middle items-center bg-primary w-full h-20">
+      <div class="w-full text-center text-xl  ">Hello 2 Spartans!</div>
+      <div class="px-4">
+        <hlm-avatar variant="large">
+          <img
+            src="/assets/avatar.png"
+            alt="spartan logo. Resembling a spartanic shield"
+            hlmAvatarImage
+          />
+          <span class="bg-[#000000] text-white" hlmAvatarFallback>LI</span>
+        </hlm-avatar>
+      </div>
     </div>
     <div class="p-4 w-full text-center">Payment data table</div>
     <div class="p-4 flex justify-center">
@@ -46,7 +63,7 @@ interface Product {
       </div>
     </div>
 
-      <brn-separator hlmSeparator class="my-4" />
+    <brn-separator hlmSeparator class="my-4" />
     <div class="p-4 w-full text-center">Default styled Table</div>
     <div class="p-4 flex justify-center">
       <div class="relative w-full max-w-3xl overflow-x-auto">
@@ -54,7 +71,7 @@ interface Product {
       </div>
     </div>
 
-      <brn-separator hlmSeparator class="my-4" />
+    <brn-separator hlmSeparator class="my-4" />
     <div class="p-4 w-full text-center">New York styled Table</div>
     <div class="p-4 flex justify-center">
       <div class="relative w-full max-w-3xl overflow-x-auto">
@@ -62,7 +79,7 @@ interface Product {
       </div>
     </div>
 
-      <brn-separator hlmSeparator class="my-4" />
+    <brn-separator hlmSeparator class="my-4" />
     <div class="p-4 w-full text-center">
       Global styled Table via provideHlmTableConfig
     </div>
